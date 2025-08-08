@@ -61,3 +61,153 @@ function initializeGame() {
     hideVictoryMessage();
 }
 
+// Fisher-Yates shuffle
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+// Create visual game board
+function createGameBoard() {
+    gameBoardElement.innerHTML = '';
+    
+    gameBoard.forEach(card => {
+        const cardElement = document.createElement('div');
+        cardElement.className = 'card face-down';
+        cardElement.dataset.cardId = card.id;
+        cardElement.dataset.pairId = card.pairId;
+        cardElement.addEventListener('click', flipCard);
+        gameBoardElement.appendChild(cardElement);
+    });
+}
+
+// Handle card flip
+function flipCard(event) {
+    if (!gameStarted) return;
+    
+    const cardElement = event.currentTarget;
+    const cardId = cardElement.dataset.cardId;
+    
+    // Prevent invalid flips
+    if (cardElement.classList.contains('flipped') || 
+        cardElement.classList.contains('matched') ||
+        flippedCards.length >= 2) {
+        return;
+    }
+    
+    const cardData = gameBoard.find(card => card.id === cardId);
+
+    // Flip the card
+    cardElement.classList.remove('face-down');
+    cardElement.classList.add('flipped');
+    cardElement.textContent = cardData.content;
+    
+    flippedCards.push({ element: cardElement, data: cardData });
+    
+    // Check for match when 2 cards flipped
+    if (flippedCards.length === 2) {
+        moves++;
+        updateDisplay();
+        setTimeout(checkMatch, 1000);
+    }
+}
+// Check if cards match
+function checkMatch() {
+    const [card1, card2] = flippedCards;
+    
+    if (card1.data.pairId === card2.data.pairId) {
+        // Match found
+        card1.element.classList.add('matched');
+        card2.element.classList.add('matched');
+        card1.element.classList.remove('flipped');
+        card2.element.classList.remove('flipped');
+        
+        matchedPairs++;
+        updateDisplay();
+        
+        // Check if game complete
+        if (matchedPairs === chemistryPairs.length) {
+            endGame();
+        }
+    } else {
+        // No match - flip back
+        card1.element.classList.remove('flipped');
+        card2.element.classList.remove('flipped');
+        card1.element.classList.add('face-down');
+        card2.element.classList.add('face-down');
+        card1.element.textContent = '';
+        card2.element.textContent = '';
+    }
+    
+    flippedCards = [];
+}
+
+// Start game
+function startGame() {
+    gameStarted = true;
+    startTimer();
+    startBtn.textContent = 'Game Started';
+    startBtn.disabled = true;
+}
+
+// Timer functions
+function startTimer() {
+    timerInterval = setInterval(() => {
+        gameTimer++;
+        updateDisplay();
+    }, 1000);
+}
+
+function stopTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+}
+
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${minutes}:${secs.toString().padStart(2, '0')}`;
+}
+
+// Update display
+function updateDisplay() {
+    movesElement.textContent = moves;
+    matchesElement.textContent = `${matchedPairs}/${chemistryPairs.length}`;
+    timerElement.textContent = formatTime(gameTimer);
+}
+
+// End game
+function endGame() {
+    gameStarted = false;
+    stopTimer();
+    showVictoryMessage();
+}
+
+function showVictoryMessage() {
+    document.getElementById('final-moves').textContent = moves;
+    document.getElementById('final-time').textContent = formatTime(gameTimer);
+    victoryMessage.classList.remove('hidden');
+}
+
+function hideVictoryMessage() {
+    victoryMessage.classList.add('hidden');
+}
+
+// Reset game
+function resetGame() {
+    stopTimer();
+    startBtn.textContent = 'Start Game';
+    startBtn.disabled = false;
+    initializeGame();
+}
+
+// Event listeners
+startBtn.addEventListener('click', startGame);
+resetBtn.addEventListener('click', resetGame);
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', initializeGame);
