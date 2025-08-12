@@ -1,46 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Match Game</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>✨ Memory Magicians</title>
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link 
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" 
-      rel="stylesheet">
+      rel="stylesheet"
+    />
 
-    <!-- Main stylesheet -->
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
 
     <div class="container">
         <!-- Game header -->
         <header class="game-header">
-            <h1>🧠 Memory Match Game</h1>
+            <h1>✨ Memory Magicians</h1>
             <p id="game-description">Select a category and match the pairs</p>
         </header>
 
-        <!-- Stats display -->
+        <!-- Stats -->
         <div class="game-stats">
-            <div class="stat">
-                <span class="stat-label">Moves:</span>
-                <span id="moves-count">0</span>
-            </div>
-            <div class="stat">
-                <span class="stat-label">Matches:</span>
-                <span id="matches-count">0</span>
-            </div>
-            <div class="stat">
-                <span class="stat-label">Time:</span>
-                <span id="timer">0:00</span>
-            </div>
+            <div class="stat"><span class="stat-label">Moves:</span> <span id="moves-count">0</span></div>
+            <div class="stat"><span class="stat-label">Matches:</span> <span id="matches-count">0</span></div>
+            <div class="stat"><span class="stat-label">Time:</span> <span id="timer">0:00</span></div>
         </div>
 
-        <!-- Game controls -->
+        <!-- Controls -->
         <div class="game-controls">
             <div class="category-buttons">
                 <button id="chemistry" class="btn-primary start-btn">Chemistry</button>
@@ -55,5 +47,18 @@
         <!-- Game board -->
         <div id="game-board" class="game-board"></div>
 
-        <!-- Overlay + Victory message -->
+        <!-- Overlay & Victory -->
         <div id="overlay" class="overlay hidden"></div>
+        <div id="victory-message" class="victory-message hidden">
+            <h2>🎉 Congratulations!</h2>
+            <p>You completed the game!</p>
+            <p>Moves: <span id="final-moves"></span> | Time: <span id="final-time"></span></p>
+            <button id="play-again-btn" class="btn-primary">Play Again</button>
+        </div>
+    </div>
+
+    <!-- JS Files -->
+    <script src="assets/js/pairs.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

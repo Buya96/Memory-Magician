@@ -31,7 +31,7 @@ startBtns.forEach(btn => {
         resetBtn.classList.remove("hidden");
         gameCategory = btn.id;
 
-        // Theme and dynamic header text
+        // Theme & dynamic header description
         document.body.classList.remove("chemistry-theme", "capitals-theme", "german-theme");
         if (gameCategory === "chemistry") {
             document.body.classList.add("chemistry-theme");
@@ -58,11 +58,13 @@ function initializeGame(category) {
     } else if (category === "german") {
         selectedPairs = germanPairs;
     }
+
     gameBoard = [];
     selectedPairs.forEach(pair => {
         gameBoard.push({ id: `${pair.id}-element`, content: pair.element, pairId: pair.id });
         gameBoard.push({ id: `${pair.id}-symbol`, content: pair.symbol, pairId: pair.id });
     });
+
     shuffleArray(gameBoard);
     flippedCards = [];
     matchedPairs = 0;
@@ -74,7 +76,7 @@ function initializeGame(category) {
     hideVictoryMessage();
 }
 
-// Shuffle utility
+// Shuffle function
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -82,7 +84,7 @@ function shuffleArray(array) {
     }
 }
 
-// Board create with fade+stagger
+// Create board with fade/stagger
 function createGameBoard() {
     if (gameBoardElement.children.length > 0) {
         gameBoardElement.classList.remove('fade-in');
@@ -112,7 +114,7 @@ function renderCards() {
     });
 }
 
-// Flip logic
+// Card flip
 function flipCard(e) {
     if (!gameStarted) return;
     const cardElement = e.currentTarget;
@@ -160,9 +162,12 @@ function startGame() {
     startTimer();
 }
 
-// Timer
+// Timer controls
 function startTimer() {
-    timerInterval = setInterval(() => { gameTimer++; updateDisplay(); }, 1000);
+    timerInterval = setInterval(() => {
+        gameTimer++;
+        updateDisplay();
+    }, 1000);
 }
 function stopTimer() {
     clearInterval(timerInterval);
@@ -174,14 +179,14 @@ function formatTime(seconds) {
     return `${m}:${s.toString().padStart(2, '0')}`;
 }
 
-// Update stats
+// Update scoreboard
 function updateDisplay() {
     movesElement.textContent = moves;
     matchesElement.textContent = `${matchedPairs}/${selectedPairs.length}`;
     timerElement.textContent = formatTime(gameTimer);
 }
 
-// End game
+// Game end
 function endGame() {
     gameStarted = false;
     stopTimer();
@@ -198,7 +203,7 @@ function hideVictoryMessage() {
     victoryMessage.classList.add('hidden');
 }
 
-// Reset
+// Reset game
 function resetGame() {
     stopTimer();
     categoryButtonsContainer.classList.remove("hidden");
@@ -213,7 +218,8 @@ function resetGame() {
     document.body.classList.remove("chemistry-theme", "capitals-theme", "german-theme");
 }
 
-// Events
+// Event bindings
 resetBtn.addEventListener('click', resetGame);
 playAgainBtn.addEventListener('click', resetGame);
 document.addEventListener('DOMContentLoaded', hideVictoryMessage);
+
