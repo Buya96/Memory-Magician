@@ -14,14 +14,14 @@ const chemistryPairs = [
 
 // Capitals data — capital name prefixed with country flag emoji; symbol is the country name
 const capitalsPairs = [
-    { id: 1, element: "🇬🇧 London", symbol: "United Kingdom" },
-    { id: 2, element: "🇫🇷 Paris", symbol: "France" },
-    { id: 3, element: "🇮🇪 Dublin", symbol: "Ireland" },
-    { id: 4, element: "🇮🇹 Rome", symbol: "Italy" },
-    { id: 5, element: "🇪🇸 Madrid", symbol: "Spain" },
-    { id: 6, element: "🇸🇪 Stockholm", symbol: "Sweden" },
-    { id: 7, element: "🇮🇸 Reykjavik", symbol: "Iceland" },
-    { id: 8, element: "🇳🇴 Oslo", symbol: "Norway" }
+    { id: 1, element: "London", symbol: "United Kingdom" },
+    { id: 2, element: "Paris", symbol: "France" },
+    { id: 3, element: "Dublin", symbol: "Ireland" },
+    { id: 4, element: "Rome", symbol: "Italy" },
+    { id: 5, element: "Madrid", symbol: "Spain" },
+    { id: 6, element: "Stockholm", symbol: "Sweden" },
+    { id: 7, element: "Reykjavik", symbol: "Iceland" },
+    { id: 8, element: "Oslo", symbol: "Norway" }
 ];
 
 // German vocabulary data — animal emoji as element, symbol is German word
