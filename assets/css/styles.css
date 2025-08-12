@@ -4,10 +4,26 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+/* Default background for intro screen */
 body {
     font-family: 'Inter', sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #333;
+    transition: background 0.5s ease;
+}
+
+/* Category-specific body themes */
+body.chemistry-theme {
+    background: linear-gradient(135deg, #6a11cb 0%, #9a55ff 100%); /* Purple */
+}
+
+body.capitals-theme {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); /* Green */
+}
+
+body.german-theme {
+    background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%); /* Yellow */
 }
 
 /* Container */
@@ -77,7 +93,7 @@ body {
     display: none !important;
 }
 
-/* Board */
+/* Board layout */
 .game-board {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -86,7 +102,7 @@ body {
     margin: 0 auto;
 }
 
-/* Card base style */
+/* Cards */
 .card {
     aspect-ratio: 1;
     background: linear-gradient(135deg, #4299e1, #667eea);
@@ -97,17 +113,12 @@ body {
     justify-content: center;
     border-radius: 10px;
     cursor: pointer;
-    /* Press/click effect transition */
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-
-/* Pressed state */
 .card:active {
     transform: scale(0.96);
     box-shadow: 0 2px 6px rgba(0,0,0,0.3) inset;
 }
-
-/* Hover glow for face-down cards */
 .card.face-down:hover {
     box-shadow: 0 0 10px rgba(255,255,255,0.4);
 }
@@ -125,7 +136,7 @@ body {
     animation: flipWobble 0.4s ease forwards;
 }
 
-/* Matched bounce animation */
+/* Matched bounce */
 @keyframes matchBounce {
     0%, 100% { transform: scale(1); }
     50%      { transform: scale(1.1); }
@@ -136,7 +147,7 @@ body {
     animation: matchBounce 0.3s ease;
 }
 
-/* Overlay & Modal */
+/* Overlay & Victory message */
 .overlay {
     position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
@@ -169,9 +180,9 @@ body {
 
 /* Responsive */
 @media(max-width:768px){
-    .game-board{ grid-template-columns: repeat(3, 1fr);}
+    .game-board{ grid-template-columns: repeat(3, 1fr); }
 }
 @media(max-width:480px){
-    .game-board{ grid-template-columns: repeat(2, 1fr);}
+    .game-board{ grid-template-columns: repeat(2, 1fr); }
 }
 
