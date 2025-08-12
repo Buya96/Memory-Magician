@@ -45,6 +45,8 @@ For further details, wireframes and design diagrams are available in the `/docs/
 ## Setup & Installation
 
 1. **Clone the Repository**
+git clone https://github.com/buya96/Memory-magicians.git
+cd memory-magician
 
 2. **Installation**
 - No build step or dependencies required.
