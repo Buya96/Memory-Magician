@@ -11,7 +11,7 @@ html, body {
 /* Category backgrounds */
 body.chemistry-theme { background: linear-gradient(135deg, #6a11cb 0%, #9a55ff 100%); }
 body.capitals-theme  { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-body.german-theme    { background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%); }
+body.german-theme   { background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%); }
 
 /* Container */
 .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
@@ -65,29 +65,38 @@ body.german-theme    { background: linear-gradient(135deg, #f7971e 0%, #ffd200 1
   color: transparent;
 }
 .card.face-down::before {
-  display: flex; align-items: center; justify-content: center;
-  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   font-family:
     "Apple Color Emoji",
     "Segoe UI Emoji",
     "Noto Color Emoji",
     sans-serif;
-  content: "🇩🇪";
   font-size: 1.8rem;
-  /* PNG fallback if emoji unsupported */
+  content: "🇩🇪";
   background-image: url('../img/flag-de.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
+
+/* Theme overrides with emoji content and PNG fallback */
 body.chemistry-theme .card.face-down::before {
-  content: "🧪"; background-image: none;
+  content: "🧪";
+  background-image: url('../img/test-tube.png');
 }
+
 body.capitals-theme .card.face-down::before {
-  content: "🌍"; background-image: none;
+  content: "🌍";
+  background-image: url('../img/globe.png');
 }
+
 body.german-theme .card.face-down::before {
-  content: "🇩🇪"; background-image: url('../img/flag-de.png');
+  content: "🇩🇪";
+  background-image: url('../img/flag-de.png');
 }
 
 /* Flip reveal animation */
@@ -156,6 +165,7 @@ body.german-theme .card.face-down::before {
   opacity:1; transform: translate(-50%,-50%) scale(1);
 }
 
+/* Responsive grid for smaller screens */
 @media(max-width:768px){ .game-board{ grid-template-columns:repeat(3,1fr);} }
 @media(max-width:480px){ .game-board{ grid-template-columns:repeat(2,1fr);} }
 
