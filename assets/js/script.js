@@ -1,6 +1,6 @@
 /* jshint esversion: 11 */
 
-// Game state
+// Game state vars
 let gameBoard = [];
 let flippedCards = [];
 let selectedPairs = [];
@@ -24,14 +24,13 @@ const playAgainBtn = document.getElementById('play-again-btn');
 const overlay = document.getElementById('overlay');
 const gameDescription = document.getElementById('game-description');
 
-// Category button click listener
+// Category select
 startBtns.forEach(btn => {
     btn.addEventListener("click", function() {
         categoryButtonsContainer.classList.add("hidden");
         resetBtn.classList.remove("hidden");
         gameCategory = btn.id;
 
-        // Theme & dynamic header description
         document.body.classList.remove("chemistry-theme", "capitals-theme", "german-theme");
         if (gameCategory === "chemistry") {
             document.body.classList.add("chemistry-theme");
@@ -49,15 +48,11 @@ startBtns.forEach(btn => {
     });
 });
 
-// Initialise game
+// Initialise
 function initializeGame(category) {
-    if (category === "capitals") {
-        selectedPairs = capitalsPairs;
-    } else if (category === "chemistry") {
-        selectedPairs = chemistryPairs;
-    } else if (category === "german") {
-        selectedPairs = germanPairs;
-    }
+    if (category === "capitals") selectedPairs = capitalsPairs;
+    else if (category === "chemistry") selectedPairs = chemistryPairs;
+    else if (category === "german") selectedPairs = germanPairs;
 
     gameBoard = [];
     selectedPairs.forEach(pair => {
@@ -76,7 +71,7 @@ function initializeGame(category) {
     hideVictoryMessage();
 }
 
-// Shuffle function
+// Shuffle
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -84,7 +79,7 @@ function shuffleArray(array) {
     }
 }
 
-// Create board with fade/stagger
+// Create board with fade & stagger
 function createGameBoard() {
     if (gameBoardElement.children.length > 0) {
         gameBoardElement.classList.remove('fade-in');
@@ -100,7 +95,7 @@ function createGameBoard() {
     }
 }
 
-// Render cards with staggered flip-in
+// Render cards
 function renderCards() {
     gameBoardElement.innerHTML = '';
     gameBoard.forEach((card, index) => {
@@ -109,14 +104,22 @@ function renderCards() {
         el.dataset.cardId = card.id;
         el.dataset.pairId = card.pairId;
         el.addEventListener('click', flipCard);
-        el.style.animationDelay = `${index * 0.05}s`; // Stagger delay
+        el.style.animationDelay = `${index * 0.05}s`;
         gameBoardElement.appendChild(el);
     });
+
+    // Remove stagger-in after deal animation
+    setTimeout(() => {
+        document.querySelectorAll('.card.stagger-in').forEach(card => {
+            card.classList.remove('stagger-in');
+        });
+    }, 800);
 }
 
-// Card flip
+// Flip
 function flipCard(e) {
     if (!gameStarted) return;
+
     const cardElement = e.currentTarget;
     const cardId = cardElement.dataset.cardId;
     if (cardElement.classList.contains('flipped') ||
@@ -136,7 +139,7 @@ function flipCard(e) {
     }
 }
 
-// Check match
+// Check match — fixed order
 function checkMatch() {
     const [c1, c2] = flippedCards;
     if (c1.data.pairId === c2.data.pairId) {
@@ -145,24 +148,24 @@ function checkMatch() {
         matchedPairs++;
         if (matchedPairs === selectedPairs.length) endGame();
     } else {
+        c1.element.textContent = '';
+        c2.element.textContent = '';
         c1.element.classList.remove('flipped');
         c2.element.classList.remove('flipped');
         c1.element.classList.add('face-down');
         c2.element.classList.add('face-down');
-        c1.element.textContent = '';
-        c2.element.textContent = '';
     }
     flippedCards = [];
     updateDisplay();
 }
 
-// Start game
+// Start
 function startGame() {
     gameStarted = true;
     startTimer();
 }
 
-// Timer controls
+// Timer
 function startTimer() {
     timerInterval = setInterval(() => {
         gameTimer++;
@@ -174,19 +177,18 @@ function stopTimer() {
     timerInterval = null;
 }
 function formatTime(seconds) {
-    const m = Math.floor(seconds / 60);
-    const s = seconds % 60;
+    const m = Math.floor(seconds / 60), s = seconds % 60;
     return `${m}:${s.toString().padStart(2, '0')}`;
 }
 
-// Update scoreboard
+// UI updates
 function updateDisplay() {
     movesElement.textContent = moves;
     matchesElement.textContent = `${matchedPairs}/${selectedPairs.length}`;
     timerElement.textContent = formatTime(gameTimer);
 }
 
-// Game end
+// Endgame
 function endGame() {
     gameStarted = false;
     stopTimer();
@@ -203,7 +205,7 @@ function hideVictoryMessage() {
     victoryMessage.classList.add('hidden');
 }
 
-// Reset game
+// Reset
 function resetGame() {
     stopTimer();
     categoryButtonsContainer.classList.remove("hidden");
@@ -218,8 +220,9 @@ function resetGame() {
     document.body.classList.remove("chemistry-theme", "capitals-theme", "german-theme");
 }
 
-// Event bindings
+// Events
 resetBtn.addEventListener('click', resetGame);
 playAgainBtn.addEventListener('click', resetGame);
 document.addEventListener('DOMContentLoaded', hideVictoryMessage);
+
 
