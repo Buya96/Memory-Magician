@@ -1,6 +1,6 @@
 /* jshint esversion: 11 */
 
-// Chemistry data — stays as full names + chemical symbols
+// Chemistry data — pure element names and chemical symbols
 const chemistryPairs = [
     { id: 1, element: "Hydrogen", symbol: "H" },
     { id: 2, element: "Carbon", symbol: "C" },
@@ -12,7 +12,7 @@ const chemistryPairs = [
     { id: 8, element: "Silver", symbol: "Ag" }
 ];
 
-// Capitals data — country emoji + capital name
+// Capitals data — capital name prefixed with country flag emoji; symbol is the country name
 const capitalsPairs = [
     { id: 1, element: "🇬🇧 London", symbol: "United Kingdom" },
     { id: 2, element: "🇫🇷 Paris", symbol: "France" },
@@ -24,14 +24,14 @@ const capitalsPairs = [
     { id: 8, element: "🇳🇴 Oslo", symbol: "Norway" }
 ];
 
-// German vocabulary data — animal emoji + German word
+// German vocabulary data — animal emoji as element, symbol is German word
 const germanPairs = [
-    { id: 1, element: "😺", symbol: "Katze" },  // cat
-    { id: 2, element: "🐶", symbol: "Hund" },   // dog
-    { id: 3, element: "🐟", symbol: "Fisch" },  // fish
-    { id: 4, element: "🐦", symbol: "Vogel" },  // bird
-    { id: 5, element: "🐷", symbol: "Schwein" }, // pig
-    { id: 6, element: "🐴", symbol: "Pferd" },   // horse
-    { id: 7, element: "🐮", symbol: "Kuh" },     // cow
-    { id: 8, element: "🐸", symbol: "Frosch" }   // frog
+    { id: 1, element: "😺", symbol: "Katze" },    // Cat
+    { id: 2, element: "🐶", symbol: "Hund" },     // Dog
+    { id: 3, element: "🐟", symbol: "Fisch" },    // Fish
+    { id: 4, element: "🐦", symbol: "Vogel" },    // Bird
+    { id: 5, element: "🐷", symbol: "Schwein" },  // Pig
+    { id: 6, element: "🐴", symbol: "Pferd" },    // Horse
+    { id: 7, element: "🐮", symbol: "Kuh" },      // Cow
+    { id: 8, element: "🐸", symbol: "Frosch" }    // Frog
 ];
