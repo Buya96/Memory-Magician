@@ -106,12 +106,20 @@ body.german-theme {
     transition: transform 0.15s ease, box-shadow 0.15s ease;
     position: relative;
 }
-.card:active {
-    transform: scale(0.96);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3) inset;
+
+/* FIX — Face-down state hides text */
+.card.face-down {
+    background: linear-gradient(135deg, #4299e1, #667eea);
+    color: transparent; /* hide any text when card back is showing */
 }
 .card.face-down:hover {
     box-shadow: 0 0 10px rgba(255,255,255,0.4);
+}
+.card.face-down::before {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 /* Category-specific back emojis */
@@ -129,7 +137,13 @@ body.german-theme .card.face-down::before {
     font-size: 1.8rem;
 }
 
-/* Flip wobble animation for real flips */
+/* Pressed state */
+.card:active {
+    transform: scale(0.96);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3) inset;
+}
+
+/* Flip wobble animation */
 @keyframes flipWobble {
     0%   { transform: scale(0.96) rotateY(0deg); }
     40%  { transform: scale(1.05) rotateY(10deg); }
@@ -201,6 +215,7 @@ body.german-theme .card.face-down::before {
     transform: translate(-50%, -50%) scale(1);
 }
 
-/* Responsive */
+/* Responsive tweaks */
 @media(max-width:768px){ .game-board{ grid-template-columns: repeat(3,1fr);} }
 @media(max-width:480px){ .game-board{ grid-template-columns: repeat(2,1fr);} }
+
