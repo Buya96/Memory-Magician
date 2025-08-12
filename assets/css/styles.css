@@ -69,8 +69,20 @@ body {
 .game-controls {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 15px;
     margin-bottom: 30px;
+}
+
+.category-buttons,
+.reset-button {
+    display: flex;
+    gap: 10px;
+}
+
+/* Hide items */
+.hidden {
+    display: none !important;
 }
 
 .btn-primary {

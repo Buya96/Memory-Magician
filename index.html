@@ -42,10 +42,14 @@
 
         <!-- Game controls -->
         <div class="game-controls">
-            <button id="chemistry" class="btn-primary start-btn">Chemistry</button>
-            <button id="capitals" class="btn-primary start-btn">Capitals</button>
-            <button id="german" class="btn-primary start-btn">German</button>
-            <button id="reset-btn" class="btn-secondary hidden">Reset</button>
+            <div class="category-buttons">
+                <button id="chemistry" class="btn-primary start-btn">Chemistry</button>
+                <button id="capitals" class="btn-primary start-btn">Capitals</button>
+                <button id="german" class="btn-primary start-btn">German</button>
+            </div>
+            <div class="reset-button">
+                <button id="reset-btn" class="btn-secondary hidden">Reset</button>
+            </div>
         </div>
 
         <!-- Game board (cards populated by JS) -->
@@ -60,7 +64,7 @@
         </div>
     </div>
 
-    <!-- Load game data (pairs) first, then game logic -->
+    <!-- Load game data (pairs) first, then main logic -->
     <script src="assets/js/pairs.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
