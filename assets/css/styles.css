@@ -85,22 +85,55 @@ body {
     max-width: 600px;
     margin: 0 auto;
 }
+
+/* Card base style */
 .card {
     aspect-ratio: 1;
     background: linear-gradient(135deg, #4299e1, #667eea);
     color: white;
     font-size: 1.2rem;
-    display: flex; align-items: center; justify-content: center;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
     border-radius: 10px;
     cursor: pointer;
+    /* Press/click effect transition */
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Pressed state */
+.card:active {
+    transform: scale(0.96);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3) inset;
+}
+
+/* Hover glow for face-down cards */
+.card.face-down:hover {
+    box-shadow: 0 0 10px rgba(255,255,255,0.4);
+}
+
+/* Flip wobble animation */
+@keyframes flipWobble {
+    0%   { transform: scale(0.96) rotateY(0deg); }
+    40%  { transform: scale(1.05) rotateY(10deg); }
+    70%  { transform: scale(1) rotateY(-5deg); }
+    100% { transform: scale(1) rotateY(0deg); }
 }
 .card.flipped {
     background: #f0fff4;
     color: #2d7d3e;
+    animation: flipWobble 0.4s ease forwards;
+}
+
+/* Matched bounce animation */
+@keyframes matchBounce {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.1); }
 }
 .card.matched {
     background: #e6fffa;
     color: #2c7a7b;
+    animation: matchBounce 0.3s ease;
 }
 
 /* Overlay & Modal */
@@ -141,3 +174,4 @@ body {
 @media(max-width:480px){
     .game-board{ grid-template-columns: repeat(2, 1fr);}
 }
+
