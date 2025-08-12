@@ -45,7 +45,7 @@ For further details, wireframes and design diagrams are available in the `/docs/
 ## Setup & Installation
 
 1. **Clone the Repository**
-git clone https://github.com/buya96/Memory-magicians.git
+git clone https://github.com/buya96/Memory-magician.git
 cd memory-magician
 
 2. **Installation**
@@ -92,7 +92,7 @@ Testing has been carried out using the following procedures:
 
 The deployed application is publicly available on GitHub Pages:
 
-- **Production URL:** [https://buya96.github.io/Memory-Magicians/](https://buya96.github.io/Memory-Magicians/)
+- **Production URL:** [https://buya96.github.io/Memory-Magician/](https://buya96.github.io/Memory-Magician/)
 
 ### Deployment Procedure
 
@@ -127,5 +127,4 @@ For questions, bug reports, or to contribute:
 
 ## Screenshots
 
-Include screenshots of completed game in various categories and on different devices in `/docs/screenshots/` to visually support the testing documentation.
 
