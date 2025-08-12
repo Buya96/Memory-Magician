@@ -1,16 +1,11 @@
 /* jshint esversion: 11 */
-// Game state
-let gameBoard = [];
-let flippedCards = [];
-let selectedPairs = [];
-let matchedPairs = 0;
-let moves = 0;
-let gameStarted = false;
-let gameTimer = 0;
-let timerInterval = null;
-let gameCategory = "";
 
-// DOM elements
+// Game state
+let gameBoard = [], flippedCards = [], selectedPairs = [];
+let matchedPairs = 0, moves = 0, gameStarted = false;
+let gameTimer = 0, timerInterval = null, gameCategory = "";
+
+// DOM
 const gameBoardElement = document.getElementById('game-board');
 const movesElement = document.getElementById('moves-count');
 const matchesElement = document.getElementById('matches-count');
@@ -23,17 +18,14 @@ const playAgainBtn = document.getElementById('play-again-btn');
 const overlay = document.getElementById('overlay');
 const gameDescription = document.getElementById('game-description');
 
-// Category select, set theme
+// Category select
 startBtns.forEach(btn => {
     btn.addEventListener("click", function() {
         categoryButtonsContainer.classList.add("hidden");
         resetBtn.classList.remove("hidden");
         gameCategory = btn.id;
 
-        // Remove all prev theme classes
         document.body.classList.remove("chemistry-theme", "capitals-theme", "german-theme");
-
-        // Add correct class and description
         if (gameCategory === "chemistry") {
             document.body.classList.add("chemistry-theme");
             gameDescription.textContent = "🧪 Match chemical elements with their symbols";
@@ -49,28 +41,23 @@ startBtns.forEach(btn => {
     });
 });
 
-// Initialise game
 function initializeGame(category) {
     if (category === "capitals") selectedPairs = capitalsPairs;
     else if (category === "chemistry") selectedPairs = chemistryPairs;
     else if (category === "german") selectedPairs = germanPairs;
+
     gameBoard = [];
     selectedPairs.forEach(pair => {
         gameBoard.push({ id: `${pair.id}-element`, content: pair.element, pairId: pair.id });
         gameBoard.push({ id: `${pair.id}-symbol`, content: pair.symbol, pairId: pair.id });
     });
     shuffleArray(gameBoard);
-    flippedCards = [];
-    matchedPairs = 0;
-    moves = 0;
-    gameStarted = false;
-    gameTimer = 0;
+    flippedCards = []; matchedPairs = 0; moves = 0; gameStarted = false; gameTimer = 0;
     updateDisplay();
     createGameBoard();
     hideVictoryMessage();
 }
 
-// Shuffle cards
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -78,7 +65,6 @@ function shuffleArray(array) {
     }
 }
 
-// Fade out/fade in and stagger deal animation
 function createGameBoard() {
     if (gameBoardElement.children.length > 0) {
         gameBoardElement.classList.remove('fade-in');
@@ -94,7 +80,6 @@ function createGameBoard() {
     }
 }
 
-// Staggered deal flip-in
 function renderCards() {
     gameBoardElement.innerHTML = '';
     gameBoard.forEach((card, index) => {
@@ -106,15 +91,11 @@ function renderCards() {
         el.style.animationDelay = `${index * 0.05}s`;
         gameBoardElement.appendChild(el);
     });
-    // Remove .stagger-in after animation so it's never present during real flips/match
     setTimeout(() => {
-        document.querySelectorAll('.card.stagger-in').forEach(card => {
-            card.classList.remove('stagger-in');
-        });
+        document.querySelectorAll('.card.stagger-in').forEach(card => card.classList.remove('stagger-in'));
     }, 800);
 }
 
-// Card flip
 function flipCard(e) {
     if (!gameStarted) return;
     const cardElement = e.currentTarget;
@@ -122,11 +103,13 @@ function flipCard(e) {
     if (cardElement.classList.contains('flipped') ||
         cardElement.classList.contains('matched') ||
         flippedCards.length >= 2) return;
+
     const cardData = gameBoard.find(card => card.id === cardId);
     cardElement.classList.remove('face-down');
     cardElement.classList.add('flipped');
     cardElement.textContent = cardData.content;
     flippedCards.push({ element: cardElement, data: cardData });
+
     if (flippedCards.length === 2) {
         moves++;
         updateDisplay();
@@ -134,7 +117,7 @@ function flipCard(e) {
     }
 }
 
-// --- FIX bug: clear content before flipping back ---
+// NEW: Soft fade-back before flipping unmatched cards
 function checkMatch() {
     const [c1, c2] = flippedCards;
     if (c1.data.pairId === c2.data.pairId) {
@@ -142,30 +125,29 @@ function checkMatch() {
         c2.element.classList.add('matched');
         matchedPairs++;
         if (matchedPairs === selectedPairs.length) endGame();
+        flippedCards = [];
     } else {
-        c1.element.textContent = '';
-        c2.element.textContent = '';
-        c1.element.classList.remove('flipped');
-        c2.element.classList.remove('flipped');
-        c1.element.classList.add('face-down');
-        c2.element.classList.add('face-down');
+        c1.element.classList.add('fade-back');
+        c2.element.classList.add('fade-back');
+        setTimeout(() => {
+            c1.element.textContent = '';
+            c2.element.textContent = '';
+            c1.element.classList.remove('flipped', 'fade-back');
+            c2.element.classList.remove('flipped', 'fade-back');
+            c1.element.classList.add('face-down');
+            c2.element.classList.add('face-down');
+            flippedCards = [];
+            updateDisplay();
+        }, 500); // match CSS duration
     }
-    flippedCards = [];
     updateDisplay();
 }
 
 function startGame() { gameStarted = true; startTimer(); }
-
 function startTimer() {
-    timerInterval = setInterval(() => {
-        gameTimer++;
-        updateDisplay();
-    }, 1000);
+    timerInterval = setInterval(() => { gameTimer++; updateDisplay(); }, 1000);
 }
-function stopTimer() {
-    clearInterval(timerInterval);
-    timerInterval = null;
-}
+function stopTimer() { clearInterval(timerInterval); timerInterval = null; }
 function formatTime(seconds) {
     const m = Math.floor(seconds / 60), s = seconds % 60;
     return `${m}:${s.toString().padStart(2, '0')}`;
@@ -177,9 +159,7 @@ function updateDisplay() {
 }
 
 function endGame() {
-    gameStarted = false;
-    stopTimer();
-    showVictoryMessage();
+    gameStarted = false; stopTimer(); showVictoryMessage();
 }
 function showVictoryMessage() {
     document.getElementById('final-moves').textContent = moves;
@@ -202,6 +182,7 @@ function resetGame() {
     gameDescription.textContent = "Select a category and match the pairs";
     document.body.classList.remove("chemistry-theme", "capitals-theme", "german-theme");
 }
+
 resetBtn.addEventListener('click', resetGame);
 playAgainBtn.addEventListener('click', resetGame);
 document.addEventListener('DOMContentLoaded', hideVictoryMessage);
