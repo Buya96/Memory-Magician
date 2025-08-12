@@ -22,6 +22,7 @@ const categoryButtonsContainer = document.querySelector('.category-buttons');
 const victoryMessage = document.getElementById('victory-message');
 const playAgainBtn = document.getElementById('play-again-btn');
 const overlay = document.getElementById('overlay');
+const gameDescription = document.getElementById('game-description');
 
 // Category button click listener
 startBtns.forEach(btn => {
@@ -29,6 +30,16 @@ startBtns.forEach(btn => {
         categoryButtonsContainer.classList.add("hidden");
         resetBtn.classList.remove("hidden");
         gameCategory = btn.id;
+
+        // Dynamic descriptions with emojis
+        if (gameCategory === "chemistry") {
+            gameDescription.textContent = "🧪 Match chemical elements with their symbols";
+        } else if (gameCategory === "capitals") {
+            gameDescription.textContent = "🌍 Match world capitals with their countries";
+        } else if (gameCategory === "german") {
+            gameDescription.textContent = "🇩🇪 Match German words to their meanings or icons";
+        }
+
         initializeGame(gameCategory);
         startGame();
     });
@@ -69,8 +80,7 @@ function createGameBoard() {
     gameBoardElement.innerHTML = '';
     gameBoard.forEach(card => {
         const el = document.createElement('div');
-        el.className = 'card';
-        el.classList.add('face-down');
+        el.className = 'card face-down';
         el.dataset.cardId = card.id;
         el.dataset.pairId = card.pairId;
         el.addEventListener('click', flipCard);
@@ -175,10 +185,10 @@ function resetGame() {
     matchedPairs = moves = gameTimer = 0;
     updateDisplay();
     hideVictoryMessage();
+    gameDescription.textContent = "Select a category and match the pairs";
 }
 
 // Events
 resetBtn.addEventListener('click', resetGame);
 playAgainBtn.addEventListener('click', resetGame);
 document.addEventListener('DOMContentLoaded', hideVictoryMessage);
-

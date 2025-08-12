@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Science Memory Game</title>
+    <title>Memory Match Game</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,8 +20,8 @@
     <div class="container">
         <!-- Game header -->
         <header class="game-header">
-            <h1>🧪 Science Memory Game</h1>
-            <p>Match chemical elements with their symbols</p>
+            <h1>🧠 Memory Match Game</h1>
+            <p id="game-description">Select a category and match the pairs</p>
         </header>
 
         <!-- Stats display -->
@@ -57,16 +57,3 @@
 
         <!-- Overlay + Victory message -->
         <div id="overlay" class="overlay hidden"></div>
-        <div id="victory-message" class="victory-message hidden">
-            <h2>🎉 Congratulations!</h2>
-            <p>You completed the game!</p>
-            <p>Moves: <span id="final-moves"></span> | Time: <span id="final-time"></span></p>
-            <button id="play-again-btn" class="btn-primary">Play Again</button>
-        </div>
-    </div>
-
-    <!-- JS: Data first, then logic -->
-    <script src="assets/js/pairs.js"></script>
-    <script src="assets/js/script.js"></script>
-</body>
-</html>
