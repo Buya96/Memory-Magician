@@ -20,6 +20,7 @@ const startBtns = document.querySelectorAll('.start-btn');
 const resetBtn = document.getElementById('reset-btn');
 const categoryButtonsContainer = document.querySelector('.category-buttons');
 const victoryMessage = document.getElementById('victory-message');
+const playAgainBtn = document.getElementById('play-again-btn'); // New reference
 
 // Category button click listener
 startBtns.forEach(btn => {
@@ -92,112 +93,5 @@ function flipCard(e) {
     if (!gameStarted) return;
     
     const cardElement = e.currentTarget;
-    const cardId = cardElement.dataset.cardId;
+    const cardId = cardElement.dataset.card
 
-    if (cardElement.classList.contains('flipped') || 
-        cardElement.classList.contains('matched') || 
-        flippedCards.length >= 2) return;
-
-    const cardData = gameBoard.find(card => card.id === cardId);
-
-    cardElement.classList.remove('face-down');
-    cardElement.classList.add('flipped');
-    cardElement.textContent = cardData.content;
-
-    flippedCards.push({ element: cardElement, data: cardData });
-
-    if (flippedCards.length === 2) {
-        moves++;
-        updateDisplay();
-        setTimeout(checkMatch, 1000);
-    }
-}
-
-// Match check
-function checkMatch() {
-    const [c1, c2] = flippedCards;
-
-    if (c1.data.pairId === c2.data.pairId) {
-        c1.element.classList.add('matched');
-        c2.element.classList.add('matched');
-        c1.element.classList.remove('flipped');
-        c2.element.classList.remove('flipped');
-        matchedPairs++;
-        updateDisplay();
-        if (matchedPairs === selectedPairs.length) endGame();
-    } else {
-        c1.element.classList.remove('flipped');
-        c2.element.classList.remove('flipped');
-        c1.element.classList.add('face-down');
-        c2.element.classList.add('face-down');
-        c1.element.textContent = '';
-        c2.element.textContent = '';
-    }
-    flippedCards = [];
-}
-
-// Start game
-function startGame() {
-    gameStarted = true;
-    startTimer();
-}
-
-// Timer handlers
-function startTimer() {
-    timerInterval = setInterval(() => {
-        gameTimer++;
-        updateDisplay();
-    }, 1000);
-}
-
-function stopTimer() {
-    if (timerInterval) clearInterval(timerInterval);
-    timerInterval = null;
-}
-
-function formatTime(seconds) {
-    const m = Math.floor(seconds / 60);
-    const s = seconds % 60;
-    return `${m}:${s.toString().padStart(2, '0')}`;
-}
-
-// Update stats
-function updateDisplay() {
-    movesElement.textContent = moves;
-    matchesElement.textContent = `${matchedPairs}/${selectedPairs.length}`;
-    timerElement.textContent = formatTime(gameTimer);
-}
-
-// Game end
-function endGame() {
-    gameStarted = false;
-    stopTimer();
-    showVictoryMessage();
-}
-
-function showVictoryMessage() {
-    document.getElementById('final-moves').textContent = moves;
-    document.getElementById('final-time').textContent = formatTime(gameTimer);
-    victoryMessage.classList.remove('hidden');
-}
-
-function hideVictoryMessage() {
-    victoryMessage.classList.add('hidden');
-}
-
-// Reset game
-function resetGame() {
-    stopTimer();
-    categoryButtonsContainer.classList.remove("hidden"); // show categories
-    resetBtn.classList.add("hidden");                    // hide reset
-    gameBoardElement.innerHTML = '';
-    matchedPairs = 0;
-    moves = 0;
-    gameTimer = 0;
-    updateDisplay();
-}
-
-resetBtn.addEventListener('click', resetGame);
-
-// On load
-document.addEventListener('DOMContentLoaded', hideVictoryMessage);
