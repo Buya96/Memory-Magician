@@ -52,20 +52,20 @@
             </div>
         </div>
 
-        <!-- Game board (cards populated by JS) -->
+        <!-- Game board -->
         <div id="game-board" class="game-board"></div>
 
-        <!-- Victory message -->
+        <!-- Overlay + Victory message -->
+        <div id="overlay" class="overlay hidden"></div>
         <div id="victory-message" class="victory-message hidden">
             <h2>🎉 Congratulations!</h2>
             <p>You completed the game!</p>
             <p>Moves: <span id="final-moves"></span> | Time: <span id="final-time"></span></p>
-            <!-- Updated: Give the Play Again button the ID our JS expects -->
             <button id="play-again-btn" class="btn-primary">Play Again</button>
         </div>
     </div>
 
-    <!-- Load game data (pairs) first, then main logic -->
+    <!-- JS: Data first, then logic -->
     <script src="assets/js/pairs.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
