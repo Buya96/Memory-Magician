@@ -8,7 +8,7 @@ body {
     transition: background 0.5s ease;
 }
 
-/* Category backgrounds */
+/* Category-specific backgrounds */
 body.chemistry-theme {
     background: linear-gradient(135deg, #6a11cb 0%, #9a55ff 100%);
 }
@@ -19,11 +19,10 @@ body.german-theme {
     background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
 }
 
-/* Container and UI */
+/* Layout */
 .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
 .game-header { text-align: center; color: white; margin-bottom: 30px; }
 .game-header h1 { font-size: 2.5rem; margin-bottom: 5px; }
-
 .game-stats {
     display: flex; justify-content: center; gap: 40px;
     margin-bottom: 20px; background: white; padding: 15px; border-radius: 10px;
@@ -31,10 +30,7 @@ body.german-theme {
 .stat { text-align: center; }
 .stat-label { font-weight: 600; color: #555; }
 
-.game-controls {
-    display: flex; justify-content: center; align-items: center;
-    gap: 15px; margin-bottom: 30px;
-}
+.game-controls { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 30px; }
 .category-buttons, .reset-button { display: flex; gap: 10px; }
 .btn-primary, .btn-secondary {
     border: none; padding: 12px 20px; border-radius: 8px;
@@ -45,22 +41,19 @@ body.german-theme {
 .hidden { display: none !important; }
 
 .game-board {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;
-    max-width: 600px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 15px; max-width: 600px; margin: 0 auto;
 }
 
 /* Cards */
 .card {
     aspect-ratio: 1;
     background: linear-gradient(135deg, #4299e1, #667eea);
-    color: white;
-    font-size: 1.2rem;
+    color: white; font-size: 1.2rem;
     display: flex; align-items: center; justify-content: center;
     border-radius: 10px; cursor: pointer; position: relative;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-
-/* Press state */
 .card:active {
     transform: scale(0.96);
     box-shadow: 0 2px 6px rgba(0,0,0,0.3) inset;
@@ -69,60 +62,38 @@ body.german-theme {
     box-shadow: 0 0 10px rgba(255,255,255,0.4);
 }
 
-/* --- CATEGORY-SPECIFIC CARD BACKS: FIX --- */
-.card.face-down {
-    background: linear-gradient(135deg, #4299e1, #667eea);
-    color: transparent; /* ensures hidden text EVEN IF textContent was set */
-}
+/* Face-down fix */
+.card.face-down { background: linear-gradient(135deg, #4299e1, #667eea); color: transparent; }
 .card.face-down::before {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+    display: flex; align-items: center; justify-content: center; height: 100%;
 }
-body.chemistry-theme .card.face-down::before {
-    content: "🧪";
-    font-size: 1.8rem;
-}
-body.capitals-theme .card.face-down::before {
-    content: "🌍";
-    font-size: 1.8rem;
-}
-body.german-theme .card.face-down::before {
-    content: "🇩🇪";
-    font-size: 1.8rem;
-}
+body.chemistry-theme .card.face-down::before { content: "🧪"; font-size: 1.8rem; }
+body.capitals-theme .card.face-down::before { content: "🌍"; font-size: 1.8rem; }
+body.german-theme .card.face-down::before { content: "🇩🇪"; font-size: 1.8rem; }
 
-/* Flip (real flips, not deal) */
+/* Flip wobble on reveal */
 @keyframes flipWobble {
-    0%   { transform: scale(0.96) rotateY(0deg); }
-    40%  { transform: scale(1.05) rotateY(10deg); }
-    70%  { transform: scale(1) rotateY(-5deg); }
+    0% { transform: scale(0.96) rotateY(0deg); }
+    40% { transform: scale(1.05) rotateY(10deg); }
+    70% { transform: scale(1) rotateY(-5deg); }
     100% { transform: scale(1) rotateY(0deg); }
 }
-.card.flipped {
-    background: #f0fff4;
-    color: #2d7d3e;
-    animation: flipWobble 0.4s ease forwards;
-}
+.card.flipped { background: #f0fff4; color: #2d7d3e; animation: flipWobble 0.4s ease forwards; }
 
 /* Matched bounce */
 @keyframes matchBounce {
     0%, 100% { transform: scale(1); }
-    50%      { transform: scale(1.1); }
+    50% { transform: scale(1.1); }
 }
-.card.matched {
-    background: #e6fffa;
-    color: #2c7a7b;
-    animation: matchBounce 0.3s ease;
-}
+.card.matched { background: #e6fffa; color: #2c7a7b; animation: matchBounce 0.3s ease; }
 
-/* Fade + DEAL-IN staggered animation */
+/* Fade animations for board */
 @keyframes fadeOut { 0% {opacity: 1;} 100% {opacity: 0;} }
 @keyframes fadeIn { 0% {opacity: 0;} 100% {opacity: 1;} }
 .game-board.fade-out { animation: fadeOut 0.3s forwards ease; }
 .game-board.fade-in { animation: fadeIn 0.3s forwards ease; }
 
+/* Stagger deal animation */
 @keyframes dealFlip {
     0% { opacity: 0; transform: rotateY(90deg) scale(0.95); }
     50% { opacity: 1; transform: rotateY(0deg) scale(1.02); }
@@ -135,32 +106,32 @@ body.german-theme .card.face-down::before {
     backface-visibility: hidden;
 }
 
-/* Overlay & modal */
+/* NEW: Soft fade-back for mismatched cards */
+@keyframes fadeBack {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+.fade-back { animation: fadeBack 0.5s ease; }
+
+/* Overlay/modal */
 .overlay {
     position: fixed; top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 900;
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    width: 100%; height: 100%; background: rgba(0,0,0,0.5);
+    z-index: 900; opacity: 0; transition: opacity 0.4s ease;
 }
 .overlay:not(.hidden) { opacity: 1; }
 .victory-message {
-    position: fixed;
-    top: 50%; left: 50%;
+    position: fixed; top: 50%; left: 50%;
     transform: translate(-50%, -50%) scale(0.95);
-    background: white;
-    padding: 30px; border-radius: 15px;
+    background: white; padding: 30px; border-radius: 15px;
     max-width: 300px; text-align: center; z-index: 1000;
-    opacity: 0;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    opacity: 0; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
-.victory-message:not(.hidden) {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
+.victory-message:not(.hidden) { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
-@media(max-width:768px){ .game-board{ grid-template-columns: repeat(3,1fr);} }
-@media(max-width:480px){ .game-board{ grid-template-columns: repeat(2,1fr);} }
+@media(max-width:768px) { .game-board { grid-template-columns: repeat(3, 1fr); } }
+@media(max-width:480px) { .game-board { grid-template-columns: repeat(2, 1fr); } }
+
 
