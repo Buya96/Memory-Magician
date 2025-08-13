@@ -5,21 +5,31 @@ Memory Magician is an interactive web-based memory game designed to challenge an
 ## Table of Contents
 
 1. [Project Purpose](#project-purpose)
-2. [Features](#features)
-3. [UX Design & Accessibility](#ux-design--accessibility)
-4. [Setup & Installation](#setup--installation)
-5. [Game Instructions](#game-instructions)
-6. [Testing & QA Process](#testing--qa-process)
-7. [Deployment](#deployment)
-8. [Development Process & Version Control](#development-process--version-control)
-9. [Attributions & External Resources](#attributions--external-resources)
-10. [Contact & Support](#contact--support)
+2. [User Stories](#user-stories)
+3. [Features](#features)
+4. [UX Design & Accessibility](#ux-design--accessibility)
+5. [Setup & Installation](#setup--installation)
+6. [Game Instructions](#game-instructions)
+7. [Testing & QA Process](#testing--qa-process)
+8. [Deployment](#deployment)
+9. [Development Process & Version Control](#development-process--version-control)
+10. [Attributions & External Resources](#attributions--external-resources)
+11. [Contact & Support](#contact--support)
 
 ## Project Purpose
 
 Memory Magician was developed as part of a diploma project to demonstrate core front-end skills, code cleanliness, UX awareness, and robust testing. The application’s purpose is to provide a real-world example of a professional-grade, responsive web game that prioritizes usability, user enjoyment, and code quality.
 
 Memory Magician's target audience includes learners and casual gamers who enjoy fun cognitive challenges and want to experience an intuitive interface with immediate feedback.
+
+## User Stories 
+
+- **As a casual gamer,** I want an engaging and visually appealing memory game so that I can enjoy quick and fun cognitive challenges.  
+- **As a learner,** I want multiple themed categories so I can expand my knowledge while playing.  
+- **As a user with different devices,** I want the game to work smoothly on desktop, tablet, and mobile so that I can play anywhere.  
+- **As a player,** I want immediate feedback on my matches and progress so that I feel motivated and informed.  
+- **As a user with accessibility needs,** I want clear visuals, readable fonts, and keyboard navigation so that the game is inclusive.  
+- **As a developer or tester,** I want clean, well-structured code and thorough testing so that the game is easy to maintain and reliable.  
 
 ## Features
 
