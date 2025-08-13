@@ -79,7 +79,7 @@ For further details, wireframes and design diagrams are available in the `/docs/
 Testing has been carried out using the following procedures:
 
 - **Manual Testing:** Each feature and category was tested by playing through multiple rounds:
-- Verified UI renders correctly across Chrome, Firefox, Edge, and Safari.
+- Verified UI renders correctly across Chrome and Safari.
 - Ensured responsive layout adapts on desktop, tablet, and mobile.
 - Checked that all controls (reset, category change) perform expected actions.
 - Verified that emoji and image fallbacks appear correctly for all categories and platforms.
