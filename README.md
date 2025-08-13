@@ -88,6 +88,36 @@ Testing has been carried out using the following procedures:
  **Resolution:** Reordered stylesheet rules and confirmed correct cascade.
 - All identified issues have been documented and resolved; no known critical bugs remain.
 
+## Testing Proof (with Screenshots)
+
+Visual evidence of the game’s function and responsiveness across various devices and categories.  
+All screenshots are located in the `/docs/screenshots/` directory.
+
+### Desktop View on Chrome
+![Desktop - Chrome](docs/screenshots/desktop-chrome.png)  
+Tested game rendering including layout, animations, and controls.
+
+### Tablet View on Chrome
+![Tablet - Chrome](docs/screenshots/tablet-chrome.png)  
+Responsive card grid adjusts properly; category changes work as expected.
+
+### Mobile View on Safari
+![Mobile - Safari](docs/screenshots/mobile-safari.png)  
+Smooth animations and accessible navigation confirmed on mobile.
+
+### Chemistry Category
+![Chemistry Theme](docs/screenshots/chemistry-theme.png)  
+Emoji and PNG fallback icons display consistently.
+
+### Capitals Category
+![Capitals Theme](docs/screenshots/capitals-theme.png)  
+Emojis render correctly without unwanted flag icons after updates.
+
+### German Category
+![German Theme](docs/screenshots/german-theme.png)  
+Image fallbacks for flags work as intended.
+
+
 ## Deployment
 
 The deployed application is publicly available on GitHub Pages:
@@ -123,7 +153,7 @@ The deployed application is publicly available on GitHub Pages:
 ## Contact & Support
 
 For questions, bug reports, or to contribute:
-- Email: ayub1231@hotmail.com
+- Email: ayub1231@hotmail.com (mailto:ayub1231@hotmail.com)
 
 ## Screenshots
 
