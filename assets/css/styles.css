@@ -42,13 +42,22 @@ body.german-theme   { background: linear-gradient(135deg, #f7971e 0%, #ffd200 10
   gap: 15px; max-width: 600px; margin: 0 auto;
 }
 
-/* Card base styles */
+/* Card base styles with fixes */
 .card {
   aspect-ratio: 1;
   background: linear-gradient(135deg, #4299e1, #667eea);
-  color: white; font-size: 1.2rem;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 10px; cursor: pointer; position: relative;
+  color: white;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;          /* vertical centring */
+  justify-content: center;      /* horizontal centring */
+  text-align: center;           /* multiline text centred */
+  overflow-wrap: break-word;    /* wrap long words */
+  word-wrap: break-word;        /* legacy support */
+  padding: 0.5rem;               /* breathing space */
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .card:active {
@@ -59,15 +68,16 @@ body.german-theme   { background: linear-gradient(135deg, #f7971e 0%, #ffd200 10
   box-shadow: 0 0 10px rgba(255,255,255,0.4);
 }
 
-/* Face-down & emoji + image fallback */
+/* Face-down & emoji + image fallback with fixes */
 .card.face-down {
   background: linear-gradient(135deg, #4299e1, #667eea);
   color: transparent;
 }
 .card.face-down::before {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center;          /* vertical centring */
+  justify-content: center;      /* horizontal centring */
+  text-align: center;
   width: 100%;
   height: 100%;
   font-family:
@@ -76,6 +86,8 @@ body.german-theme   { background: linear-gradient(135deg, #f7971e 0%, #ffd200 10
     "Noto Color Emoji",
     sans-serif;
   font-size: 1.8rem;
+  overflow-wrap: break-word;    /* wrap long text if used */
+  padding: 0.5rem;
   content: "🇩🇪";
   background-image: url('../img/flag-de.png');
   background-size: contain;
@@ -125,19 +137,19 @@ body.german-theme .card.face-down::before {
 @keyframes fadeOut { 0%{opacity:1} 100%{opacity:0} }
 @keyframes fadeIn  { 0%{opacity:0} 100%{opacity:1} }
 .game-board.fade-out { animation: fadeOut 0.3s forwards ease; }
-.game-board.fade-in  { animation: fadeIn  0.3s forwards ease; }
+.game-board.fade-in  { animation: fadeIn 0.3s forwards ease; }
 
 /* Deal-in stagger */
 @keyframes dealFlip {
   0%   { opacity:0; transform:rotateY(90deg) scale(0.95); }
-  50%  { opacity:1; transform:rotateY(0)    scale(1.02); }
-  70%  { transform:rotateY(0)    scale(0.98); }
-  100% { transform:rotateY(0)    scale(1); }
+  50%  { opacity:1; transform:rotateY(0) scale(1.02); }
+  70%  { transform:rotateY(0) scale(0.98); }
+  100% { transform:rotateY(0) scale(1); }
 }
 .card.stagger-in {
   animation: dealFlip 0.5s ease forwards;
   backface-visibility: hidden;
-  opacity:0;
+  opacity: 0;
 }
 
 /* Soft fade-back */
@@ -148,25 +160,30 @@ body.german-theme .card.face-down::before {
 
 /* Overlay & modal */
 .overlay {
-  position:fixed; top:0; left:0; width:100%; height:100%;
-  background:rgba(0,0,0,0.5); z-index:900; opacity:0;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); z-index: 900; opacity: 0;
   transition: opacity 0.4s ease;
 }
-.overlay:not(.hidden){ opacity:1; }
+.overlay:not(.hidden) { opacity: 1; }
 .victory-message {
-  position:fixed; top:50%; left:50%;
-  transform: translate(-50%,-50%) scale(0.95);
-  background:white; padding:30px; border-radius:15px;
-  max-width:300px; text-align:center; z-index:1000;
-  opacity:0; box-shadow:0 10px 25px rgba(0,0,0,0.3);
-  transition:opacity 0.4s ease, transform 0.4s ease;
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  background: white; padding: 30px; border-radius: 15px;
+  max-width: 300px; text-align: center; z-index: 1000;
+  opacity: 0; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
-.victory-message:not(.hidden){
-  opacity:1; transform: translate(-50%,-50%) scale(1);
+.victory-message:not(.hidden) {
+  opacity: 1; transform: translate(-50%, -50%) scale(1);
 }
 
 /* Responsive grid for smaller screens */
-@media(max-width:768px){ .game-board{ grid-template-columns:repeat(3,1fr);} }
-@media(max-width:480px){ .game-board{ grid-template-columns:repeat(2,1fr);} }
+@media (max-width: 768px) {
+  .game-board { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 480px) {
+  .game-board { grid-template-columns: repeat(2, 1fr); }
+}
+
 
 
