@@ -2,19 +2,6 @@
 
 Memory Magician is an interactive web-based memory game designed to challenge and delight users of all ages. With a clean user interface, engaging card-flipping mechanics, and themeable categories, this project showcases modern front-end development using HTML, CSS, and JavaScript.
 
-## Table of Contents
-
-1. [Project Purpose](#project-purpose)
-2. [User Stories](#user-stories)
-3. [Features](#features)
-4. [UX Design & Accessibility](#ux-design--accessibility)
-5. [Setup & Installation](#setup--installation)
-6. [Game Instructions](#game-instructions)
-7. [Testing & QA Process](#testing--qa-process)
-8. [Deployment](#deployment)
-9. [Development Process & Version Control](#development-process--version-control)
-10. [Attributions & External Resources](#attributions--external-resources)
-11. [Contact & Support](#contact--support)
 
 ## Project Purpose
 
