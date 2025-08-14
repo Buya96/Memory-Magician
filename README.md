@@ -143,7 +143,7 @@ The deployed application is publicly available on GitHub Pages:
 ## Contact & Support
 
 For questions, bug reports, or to contribute:
-- Email: [ayub1231@hotmail.com] (mailto:ayub1231@hotmail.com)
+- Email: [ayub1231@hotmail.com](mailto:ayub1231@hotmail.com)
 
 
 
