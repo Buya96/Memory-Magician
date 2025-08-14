@@ -54,13 +54,6 @@ For further details, wireframes and design diagrams are available in the `/docs/
 - Open `index.html` in your browser.
 - The game runs in any modern browser.
 
-## Game Instructions
-
-1. Click on any card to flip and reveal its face.
-2. Find all matching pairs in as few moves as possible.
-3. Use category buttons to switch themes.
-4. Press “Reset” to restart the game.
-
 ## Testing & QA Process
 
 Testing has been carried out using the following procedures:
@@ -150,7 +143,7 @@ The deployed application is publicly available on GitHub Pages:
 ## Contact & Support
 
 For questions, bug reports, or to contribute:
-- Email: ayub1231@hotmail.com (mailto:ayub1231@hotmail.com)
+- Email: [ayub1231@hotmail.com] (mailto:ayub1231@hotmail.com)
 
 
 
