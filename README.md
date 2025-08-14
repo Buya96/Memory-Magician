@@ -157,7 +157,7 @@ The deployed application is publicly available on GitHub Pages:
 
 ## Attributions & External Resources
 
-- All emojis are Unicode-standard; PNG icons created specifically for this project.
+- All emojis are Unicode-standard; PNG` icons created specifically for this project.
 - References for accessibility and validation tools linked above.
 
 ## Contact & Support
