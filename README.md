@@ -89,7 +89,7 @@ Testing has been carried out using the following procedures:
 - **Automated Validation:**
 - HTML validated using [W3C Markup Validation Service](https://validator.w3.org/).
 - CSS validated using [Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/).
-- JavaScript passed through [JSLint](https://www.jslint.com/) and/or ESLint; no major issues identified.
+- JavaScript passed through [JSLint](https://www.jslint.com/) 
 
 - **Bug Tracking & Resolution:**
 - **Issue:** Some emoji cards failed to render on specific browsers/platforms.
@@ -104,7 +104,7 @@ Visual evidence of the game’s function and responsiveness across various devic
 All screenshots are located in the `/docs/screenshots/` directory.
 
 ### Desktop View on Chrome
-![Desktop - Chrome](docs/screenshots/desktop-chrome.png)  
+![Desktop - Chrome](docs/screenshots/desktop-chrome.PNG)  
 Tested game rendering including layout, animations, and controls.
 
 ### Tablet View on Chrome
@@ -116,15 +116,15 @@ Responsive card grid adjusts properly; category changes work as expected.
 Smooth animations and accessible navigation confirmed on mobile.
 
 ### Chemistry Category
-![Chemistry Theme](docs/screenshots/chemistry-theme.png)  
+![Chemistry Theme](docs/screenshots/chemistry-theme.PNG)  
 Emoji and PNG fallback icons display consistently.
 
 ### Capitals Category
-![Capitals Theme](docs/screenshots/capitals-theme.png)  
+![Capitals Theme](docs/screenshots/capitals-theme.PNG)  
 Emojis render correctly without unwanted flag icons after updates.
 
 ### German Category
-![German Theme](docs/screenshots/german-theme.png)  
+![German Theme](docs/screenshots/german-theme.PNG)  
 Image fallbacks for flags work as intended.
 
 
@@ -165,6 +165,5 @@ The deployed application is publicly available on GitHub Pages:
 For questions, bug reports, or to contribute:
 - Email: ayub1231@hotmail.com (mailto:ayub1231@hotmail.com)
 
-## Screenshots
 
 
