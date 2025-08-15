@@ -107,6 +107,9 @@ Emojis render correctly without unwanted flag icons after updates.
 ![German Theme](docs/screenshots/german-theme.PNG)  
 Image fallbacks for flags work as intended.
 
+### 404 Error Page
+![Error Page](docs/screenshots/error-page.PNG)
+Default 404 error page shown when an invalid route is visited.
 
 ## Deployment
 
