@@ -2,21 +2,42 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
+  height: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #333;
-  transition: background 0.5s ease;
 }
 
-/* Category backgrounds */
-body.chemistry-theme { background: linear-gradient(135deg, #6a11cb 0%, #9a55ff 100%); }
-body.capitals-theme  { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-body.german-theme   { background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%); }
+/* Default solid background */
+body {
+  background: #764ba2; /* Default solid purple */
+  min-height: 100vh;
+}
+
+/* Category solid background colors */
+body.chemistry-theme {
+  background: #9a55ff; /* Purple for Chemistry */
+  min-height: 100vh;
+}
+
+body.capitals-theme {
+  background: #38ef7d; /* Green for Capitals */
+  min-height: 100vh;
+}
+
+body.german-theme {
+  background: #ffd200; /* Yellow for German */
+  min-height: 100vh;
+}
 
 /* Container */
 .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+
 .game-header { text-align: center; color: white; margin-bottom: 30px; }
 .game-header h1 { font-size: 2.5rem; margin-bottom: 5px; }
+
 .game-stats {
   display: flex; justify-content: center; gap: 40px;
   margin-bottom: 20px; background: white; padding: 15px; border-radius: 10px;
@@ -40,53 +61,52 @@ body.german-theme   { background: linear-gradient(135deg, #f7971e 0%, #ffd200 10
 .game-board {
   display: grid; grid-template-columns: repeat(4,1fr);
   gap: 15px; max-width: 600px; margin: 0 auto;
+  perspective: 1000px;
 }
 
-/* Card base styles with fixes */
+/* Card base styles */
 .card {
   aspect-ratio: 1;
   background: linear-gradient(135deg, #4299e1, #667eea);
   color: white;
   font-size: 1.2rem;
   display: flex;
-  align-items: center;          /* vertical centring */
-  justify-content: center;      /* horizontal centring */
-  text-align: center;           /* multiline text centred */
-  overflow-wrap: break-word;    /* wrap long words */
-  word-wrap: break-word;        /* legacy support */
-  padding: 0.5rem;               /* breathing space */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow-wrap: break-word;
+  padding: 0.5rem;
   border-radius: 10px;
   cursor: pointer;
   position: relative;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+  backface-visibility: hidden;
 }
+
 .card:active {
   transform: scale(0.96);
   box-shadow: 0 2px 6px rgba(0,0,0,0.3) inset;
 }
+
 .card.face-down:hover {
   box-shadow: 0 0 10px rgba(255,255,255,0.4);
 }
 
-/* Face-down & emoji + image fallback with fixes */
+/* Face-down & emoji fallback */
 .card.face-down {
   background: linear-gradient(135deg, #4299e1, #667eea);
   color: transparent;
 }
 .card.face-down::before {
   display: flex;
-  align-items: center;          /* vertical centring */
-  justify-content: center;      /* horizontal centring */
+  align-items: center;
+  justify-content: center;
   text-align: center;
   width: 100%;
   height: 100%;
-  font-family:
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Noto Color Emoji",
-    sans-serif;
+  font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
   font-size: 1.8rem;
-  overflow-wrap: break-word;    /* wrap long text if used */
+  overflow-wrap: break-word;
   padding: 0.5rem;
   content: "🇩🇪";
   background-image: url('../img/flag-de.png');
@@ -95,56 +115,59 @@ body.german-theme   { background: linear-gradient(135deg, #f7971e 0%, #ffd200 10
   background-position: center;
 }
 
-/* Theme overrides with emoji content and PNG fallback */
+/* Theme overrides */
 body.chemistry-theme .card.face-down::before {
   content: "🧪";
   background-image: url('../img/test-tube.png');
 }
-
 body.capitals-theme .card.face-down::before {
   content: "🌍";
   background-image: url('../img/globe.png');
 }
-
 body.german-theme .card.face-down::before {
   content: "🇩🇪";
   background-image: url('../img/flag-de.png');
 }
 
-/* Flip reveal animation */
+/* Flip wobble animation */
 @keyframes flipWobble {
-  0%   { transform: scale(0.96) rotateY(0deg); }
-  40%  { transform: scale(1.05) rotateY(10deg); }
-  70%  { transform: scale(1) rotateY(-5deg); }
-  100% { transform: scale(1) rotateY(0deg); }
+  0%   { transform: scale(0.96) rotateY(0deg);}
+  40%  { transform: scale(1.05) rotateY(10deg);}
+  70%  { transform: scale(1) rotateY(-5deg);}
+  100% { transform: scale(1) rotateY(0deg);}
 }
 .card.flipped {
-  background: #f0fff4; color: #2d7d3e;
+  background: #f0fff4;
+  color: #2d7d3e;
   animation: flipWobble 0.4s ease forwards;
 }
 
 /* Matched bounce */
 @keyframes matchBounce {
-  0%,100% { transform: scale(1); }
-  50%     { transform: scale(1.1); }
+  0%,100% { transform: scale(1);}
+  50%     { transform: scale(1.1);}
 }
 .card.matched {
   background: #e6fffa; color: #2c7a7b;
   animation: matchBounce 0.3s ease;
 }
 
-/* Board fade */
-@keyframes fadeOut { 0%{opacity:1} 100%{opacity:0} }
-@keyframes fadeIn  { 0%{opacity:0} 100%{opacity:1} }
-.game-board.fade-out { animation: fadeOut 0.3s forwards ease; }
-.game-board.fade-in  { animation: fadeIn 0.3s forwards ease; }
-
-/* Deal-in stagger */
+/* Deal flip animation */
 @keyframes dealFlip {
-  0%   { opacity:0; transform:rotateY(90deg) scale(0.95); }
-  50%  { opacity:1; transform:rotateY(0) scale(1.02); }
-  70%  { transform:rotateY(0) scale(0.98); }
-  100% { transform:rotateY(0) scale(1); }
+  0% {
+    opacity: 0;
+    transform: rotateY(90deg) scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1.02);
+  }
+  70% {
+    transform: rotateY(0deg) scale(0.98);
+  }
+  100% {
+    transform: rotateY(0deg) scale(1);
+  }
 }
 .card.stagger-in {
   animation: dealFlip 0.5s ease forwards;
@@ -177,9 +200,10 @@ body.german-theme .card.face-down::before {
   opacity: 1; transform: translate(-50%, -50%) scale(1);
 }
 
+/* Instructions */
 .game-instructions {
   text-align: center;
-  background: rgba(0,0,0,0.12);
+  background: rgba(255, 255, 255, 0.9); /* changed to opaque white to avoid blending */
   color: #222;
   margin: 24px auto 12px;
   padding: 18px 22px;
@@ -215,14 +239,14 @@ body.german-theme .card.face-down::before {
   .game-instructions h2 { font-size: 1.1rem; }
 }
 
-
-/* Responsive grid for smaller screens */
+/* Responsive grid */
 @media (max-width: 768px) {
   .game-board { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 480px) {
   .game-board { grid-template-columns: repeat(2, 1fr); }
 }
+
 
 
 
