@@ -140,8 +140,12 @@ The deployed application is publicly available on GitHub Pages:
 
 ## Attributions & External Resources
 
-- All emojis are Unicode-standard; PNG` icons created specifically for this project.
-- References for accessibility and validation tools linked above.
+- The favicon used in this project was generated with assistance from **Perplexity AI**.
+- Special thanks to my **friends and family** for thoroughly testing the game on multiple devices and providing valuable screenshots.
+- I am truly grateful to my mentor, **Tim**, for his ongoing guidance, encouragement, and support throughout this project.
+- Some parts of the JavaScript code, especially the logic on **line 72 of `script.js`** (the card matching logic), were developed with valuable guidance from **Perplexity AI** to ensure functionality and clarity.
+- Additionally, any complex JavaScript patterns or optimizations in the code that might be challenging for new learners were created with guidance from **Perplexity AI**.
+
 
 ## Contact & Support
 
