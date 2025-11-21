@@ -9,6 +9,24 @@ Memory Magician was developed as part of a diploma project to demonstrate core f
 
 Memory Magician's target audience includes learners and casual gamers who enjoy fun cognitive challenges and want to experience an intuitive interface with immediate feedback.
 
+## Wireframes and Design Diagrams
+Detailed wireframes and design diagrams are available in the /docs/design/ folder:
+
+![category selection](docs/design/category-selection.png)
+
+![start game](docs/design/start-game.png)
+
+![victory overlay](docs/design/victory-overlay.png)
+
+Design Rationale:
+When designing Memory Magician, the goal was to create a game that feels inviting and easy to use for everyone—whether on a smartphone or a desktop. The category-selection screen is kept clean and uncluttered, so users can quickly pick Chemistry, German, or Capitals and jump straight into the fun. This focus on simplicity means nobody gets lost before the game even begins.
+
+Starting a new game, the start-game screen puts big, bold buttons front and center. This helps users—including anyone less familiar with technology—begin without hunting around, and ensures accessibility for users with different needs.
+
+Finally, the victory-overlay is designed to celebrate a win, pop up clear stats, and offer an easy route to replay or try a different category, making finishing a game feel rewarding and motivating users to keep playing.
+
+Overall, these choices were made to reduce friction, keep things intuitive, and deliver a visually friendly experience—no matter the user's age or device. The entire layout puts enjoyment and ease-of-use first, making Memory Magician welcoming for all.
+
 ## User Stories 
 
 - **As a casual gamer,** I want an engaging and visually appealing memory game so that I can enjoy quick and fun cognitive challenges.  
@@ -77,6 +95,35 @@ Testing has been carried out using the following procedures:
 - **Issue:** Overriding CSS specificity caused incorrect emoji display.
  **Resolution:** Reordered stylesheet rules and confirmed correct cascade.
 - All identified issues have been documented and resolved; no known critical bugs remain.
+
+## Validation Evidence 
+Automated validation evidence is provided in /docs/validation/:
+
+![css](docs/validation/css-validation.png) — CSS checked with Jigsaw Validator; no critical errors found.
+
+![html](docs/validation/html-validation.png) — HTML validated through W3C with all essential issues resolved.
+
+![js](docs/validation/jslint-validation.png) — JavaScript validated using JSLint for proper syntax and good practices.
+
+![desktop](docs/validation/lighthouse-desktop.png) — Lighthouse audit on desktop shows strong accessibility, performance, and best practices.
+
+![mobile](docs/validation/lighthouse-mobile.png) — Lighthouse mobile audit confirms accessibility and usability on small screens.
+
+Each screenshot demonstrates compliance with industry standards and best practices for web projects.
+
+## Manual Testing Matrix
+
+## Manual Test Matrix
+
+| Test # | Scenario                               | Steps/Inputs                                       | Expected Outcome                                  | Actual Outcome                                     | Screenshot                                                |
+| ------ | -------------------------------------- | -------------------------------------------------- | ------------------------------------------------- | -------------------------------------------------- | ----------------------------------------------------------- |
+| 1      | Game victory (mobile, Capitals theme)  | Complete game on mobile (Capitals)                 | "Congratulations!" overlay, stats shown           | Overlay and stats displayed correctly              | ![Victory - Mobile](docs/screenshots/mobile-safari.png)     |
+| 2      | Game board - Capitals theme (desktop)  | Play game in Capitals theme on desktop             | Card grid, matching functions                     | Card grid and match logic work as expected         | ![Capitals Theme](docs/screenshots/capitals-theme.PNG)      |
+| 3      | Game board - Chemistry theme (desktop) | Play Chemistry theme, match elements/symbols       | Chemistry cards rendered, matches possible        | Chemistry content displays correctly and functions | ![Chemistry Theme](docs/screenshots/chemistry-theme.PNG)    |
+| 4      | Error handling (404 page)              | Visit non-existent route (e.g. /404.html)          | 404 custom error page displays                    | "Page Not Found" displayed as expected             | ![Error Page](docs/screenshots/error-page.PNG)              |
+| 5      | Initial game load (desktop)            | Open game in Chrome (desktop)                      | Game UI loads, cards/controls visible             | Game UI, stats, controls, and cards work           | ![Desktop Chrome](docs/screenshots/desktop-chrome.PNG)      |
+| 6      | German theme - Emojis & German words   | Play German theme, match emojis and German words   | Emoji and German appear on cards, matching works  | German vocabulary cards and matching work          | ![German Theme](docs/screenshots/german-theme.PNG)          |
+
 
 ## Testing Proof (with Screenshots)
 
