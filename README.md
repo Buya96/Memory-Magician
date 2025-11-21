@@ -99,15 +99,15 @@ Testing has been carried out using the following procedures:
 ## Validation Evidence 
 Automated validation evidence is provided in /docs/validation/:
 
-![css](docs/validation/css-validation.png) — CSS checked with Jigsaw Validator; no critical errors found.
+![css](docs/validation/css-validation.PNG) — CSS checked with Jigsaw Validator; no critical errors found.
 
-![html](docs/validation/html-validation.png) — HTML validated through W3C with all essential issues resolved.
+![html](docs/validation/html-validation.PNG) — HTML validated through W3C with all essential issues resolved.
 
-![js](docs/validation/jslint-validation.png) — JavaScript validated using JSLint for proper syntax and good practices.
+![js](docs/validation/jslint-validation.PNG) — JavaScript validated using JSLint for proper syntax and good practices.
 
-![desktop](docs/validation/lighthouse-desktop.png) — Lighthouse audit on desktop shows strong accessibility, performance, and best practices.
+![desktop](docs/validation/lighthouse-desktop.PNG) — Lighthouse audit on desktop shows strong accessibility, performance, and best practices.
 
-![mobile](docs/validation/lighthouse-mobile.png) — Lighthouse mobile audit confirms accessibility and usability on small screens.
+![mobile](docs/validation/lighthouse-mobile.PNG) — Lighthouse mobile audit confirms accessibility and usability on small screens.
 
 Each screenshot demonstrates compliance with industry standards and best practices for web projects.
 
